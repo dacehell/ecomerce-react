@@ -1,18 +1,56 @@
-//import { store } from "../../store";
 import {
-  FETCH_PRODUCTS_START,
-  FETCH_PRODUCTS_SUCCESS,
-  FETCH_PRODUCTS_FAILURE,
+  GET_PRODUCTS_REQUEST,
+  GET_PRODUCTS_SUCCESS,
+  GET_PRODUCTS_FAIL,
+  GET_PRODUCT_DETAILS_REQUEST,
+  GET_PRODUCT_DETAILS_SUCCESS,
+  GET_PRODUCT_DETAILS_FAIL,
+  GET_PRODUCT_DETAILS_RESET,
 } from "./constants";
-export const fetchProductsStart = () => ({
-  type: FETCH_PRODUCTS_START,
-});
-export const fetchProductsSuccess = (products) => ({
-  type: FETCH_PRODUCTS_SUCCESS,
-  payload: products,
-});
+import axios from "axios";
 
-export const fetchProductsFailure = (errorMessage) => ({
-  type: FETCH_PRODUCTS_FAILURE,
-  payload: errorMessage,
-});
+export const getProducts = () => async (dispatch) => {
+  try {
+    dispatch({ type: GET_PRODUCTS_REQUEST });
+
+    const { data } = await axios.get("/api/products");
+
+    dispatch({
+      type: GET_PRODUCTS_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: GET_PRODUCTS_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const getProductDetails = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: GET_PRODUCT_DETAILS_REQUEST });
+
+    const { data } = await axios.get(`/api/products/${id}`);
+
+    dispatch({
+      type: GET_PRODUCT_DETAILS_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: GET_PRODUCT_DETAILS_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const removeProductDetails = () => (dispatch) => {
+  dispatch({ type: GET_PRODUCT_DETAILS_RESET });
+};

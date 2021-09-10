@@ -1,33 +1,56 @@
-import { initialStateProduct } from "../initialState";
 import {
-  FETCH_PRODUCTS_START,
-  FETCH_PRODUCTS_SUCCESS,
-  FETCH_PRODUCTS_FAILURE,
+  GET_PRODUCTS_REQUEST,
+  GET_PRODUCTS_SUCCESS,
+  GET_PRODUCTS_FAIL,
+  GET_PRODUCT_DETAILS_REQUEST,
+  GET_PRODUCT_DETAILS_SUCCESS,
+  GET_PRODUCT_DETAILS_FAIL,
+  GET_PRODUCT_DETAILS_RESET,
 } from "./constants";
 
-const productsReducer = (state = initialStateProduct, action) => {
+export const getProductsReducer = (state = { products: [] }, action) => {
   switch (action.type) {
-    case FETCH_PRODUCTS_START:
+    case GET_PRODUCTS_REQUEST:
       return {
-        ...state,
-        isLoading: "loading",
+        loading: true,
+        products: [],
       };
-    case FETCH_PRODUCTS_SUCCESS:
+    case GET_PRODUCTS_SUCCESS:
       return {
-        ...state,
-        isLoading: "succeeded",
-        data: action.payload,
+        products: action.payload,
+        loading: false,
       };
-    case FETCH_PRODUCTS_FAILURE:
+    case GET_PRODUCTS_FAIL:
       return {
-        ...state,
-        errorMessage: action.payload,
-        isLoading: "failed",
-        data: [],
+        loading: false,
+        error: action.payload,
       };
-
     default:
       return state;
   }
 };
-export default productsReducer;
+
+export const getProductDetailsReducer = (state = { product: {} }, action) => {
+  switch (action.type) {
+    case GET_PRODUCT_DETAILS_REQUEST:
+      return {
+        loading: true,
+      };
+    case GET_PRODUCT_DETAILS_SUCCESS:
+      return {
+        loading: false,
+        product: action.payload,
+      };
+    case GET_PRODUCT_DETAILS_FAIL:
+      return {
+        loading: false,
+        error: action.payload,
+      };
+    case GET_PRODUCT_DETAILS_RESET:
+      return {
+        product: {},
+      };
+    default:
+      return state;
+  }
+};

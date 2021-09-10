@@ -25,8 +25,8 @@ const Menu = () => {
           <span className="navbar-toggler-icon" />
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav  mb-2 mb-lg-0">
-            <li className="nav-item">
+          <ul className="navbar-nav  mb-2 mb-lg-0 navbar__links">
+            <li className="nav-item ">
               <NavLink
                 exact
                 activeClassName="my-active"
@@ -48,12 +48,16 @@ const Menu = () => {
               </NavLink>
             </li>
           </ul>
-          <div className="ms-auto p-4">
-            <Link to="/cart">
-              <i className="fas fa-shopping-cart">Cart</i>
-              <span className="cartlogo__badge">0</span>
-            </Link>
-          </div>
+          <ul className="navbar-nav navbar__links ms-auto">
+            <li>
+              <Link to="/cart" className="cart__link">
+                <i className="fas fa-shopping-cart"></i>
+                <span>
+                  <span className="cartlogo__badge">0</span>
+                </span>
+              </Link>
+            </li>
+          </ul>
         </div>
       </div>
     </nav>
