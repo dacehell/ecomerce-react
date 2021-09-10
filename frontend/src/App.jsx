@@ -8,6 +8,8 @@ import {
 import NavBar from "./components/navbar/NavBar";
 import Home from "./containers/home/Home";
 import React from "react";
+import ProductScreen from "./containers/productscreen/ProductScreen";
+import Cart from "./containers/cart/Cart";
 function App() {
   return (
     <div>
@@ -17,6 +19,12 @@ function App() {
         <Switch>
           <Route exact path="/">
             <Home />
+          </Route>
+          <Route exact path="/product/:id">
+            <ProductScreen />
+          </Route>
+          <Route exact path="/cart">
+            <Cart />
           </Route>
           {/* <Route exact path="/">
               <UsersList />

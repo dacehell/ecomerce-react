@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
+import "./navBar.css";
 
 const Menu = () => {
   return (
@@ -24,7 +25,7 @@ const Menu = () => {
           <span className="navbar-toggler-icon" />
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+          <ul className="navbar-nav  mb-2 mb-lg-0">
             <li className="nav-item">
               <NavLink
                 exact
@@ -36,7 +37,7 @@ const Menu = () => {
               </NavLink>
             </li>
 
-            <li className="nav-item">
+            <li className="nav-item ">
               <NavLink
                 exact
                 activeClassName="my-active"
@@ -47,6 +48,12 @@ const Menu = () => {
               </NavLink>
             </li>
           </ul>
+          <div className="ms-auto p-4">
+            <Link to="/cart">
+              <i className="fas fa-shopping-cart">Cart</i>
+              <span className="cartlogo__badge">0</span>
+            </Link>
+          </div>
         </div>
       </div>
     </nav>
