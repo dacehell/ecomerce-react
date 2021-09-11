@@ -40,7 +40,7 @@ const CartScreen = () => {
       <div className="cartscreen">
         <div className="cartscreen__left">
           <div className="row">
-            <div className="col col-md-6 col-lg-8">
+            <div className="col col-md-8 col-lg-8">
               <h2>Shopping Cart</h2>
 
               {cartItems.length === 0 ? (
@@ -58,16 +58,16 @@ const CartScreen = () => {
                 ))
               )}
             </div>
-          </div>
-        </div>
 
-        <div className="cartscreen__right">
-          <div className="cartscreen__info">
-            <p>Subtotal ({getCartCount()}) items</p>
-            <p>${getCartSubTotal()}</p>
-          </div>
-          <div>
-            <button>Proceed To Checkout</button>
+            <div className="cartscreen__right col col-md-4 col-lg-4">
+              <div className="cartscreen__info">
+                <p>Subtotal ({getCartCount()}) items</p>
+                <p>${getCartSubTotal()}</p>
+              </div>
+              <div>
+                <button>Proceed To Checkout</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
