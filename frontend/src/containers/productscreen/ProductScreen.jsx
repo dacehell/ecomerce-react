@@ -33,16 +33,19 @@ const ProductScreen = ({ match, history }) => {
         <h2>{error}</h2>
       ) : (
         <div>
-          <div className="container">
-            <div className="row">
-              <div className="col col-md-6 col-lg-4">
-                <div className="card-group">
-                  <div className="card h-100 shadow-sm">
+          <div className="container card-width">
+            <div className="card-group">
+              <div className="card h-100  shadow-sm ">
+                <div className="row g-0">
+                  <div className="col-md-4">
                     <img
                       src={product.imageUrl}
                       alt={product.name}
-                      className="card-img-top"
+                      className="img-fluid rounded-start "
                     />
+                  </div>
+
+                  <div className="col col-md-8 ">
                     <div className="card-body">
                       <div className="clearfix mb-3">
                         {" "}
@@ -53,17 +56,12 @@ const ProductScreen = ({ match, history }) => {
                           ${product.price}
                         </span>{" "}
                       </div>
-                      <h5 className="card-title">
-                        Lorem, ipsum dolor sit amet consectetur adipisicing
-                        elit. Veniam quidem eaque ut eveniet aut quis rerum.
-                        Asperiores accusamus harum ducimus velit odit ut. Saepe,
-                        iste optio laudantium sed aliquam sequi.
-                      </h5>
-                      <div className="text-center my-4">
+                      <h5 className="card-title">{product.description}</h5>
+                      {/* <div className="text-center my-4">
                         <a href="#" className="btn btn-warning">
                           View details
                         </a>
-                      </div>
+                      </div> */}
                       <p>
                         Status:
                         <span>
@@ -72,25 +70,26 @@ const ProductScreen = ({ match, history }) => {
                             : "Out of Stock"}
                         </span>
                       </p>
-                      <p>
-                        Qty
-                        <select
-                          value={qty}
-                          onChange={(e) => setQty(e.target.value)}
-                        >
-                          {[...Array(product.countInStock).keys()].map((x) => (
-                            <option key={x + 1} value={x + 1}>
-                              {x + 1}
-                            </option>
-                          ))}
-                        </select>
-                      </p>
 
-                      <div className="clearfix mb-1">
-                        <span className="float-start">
-                          <i className="far fa-question-circle"></i>
-                        </span>
-                        <div className="float-end">
+                      <div className="clearfix d-flex justify-content-end">
+                        <div>
+                          <p className="me-3 align-middle">
+                            Qty
+                            <select
+                              value={qty}
+                              onChange={(e) => setQty(e.target.value)}
+                            >
+                              {[...Array(product.countInStock).keys()].map(
+                                (x) => (
+                                  <option key={x + 1} value={x + 1}>
+                                    {x + 1}
+                                  </option>
+                                )
+                              )}
+                            </select>
+                          </p>
+                        </div>
+                        <div>
                           <button
                             className="btn  btn-circle"
                             onClick={addToCartHandler}
