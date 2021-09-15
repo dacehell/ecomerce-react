@@ -5,6 +5,8 @@ const router = express.Router();
 const {
   getProducts,
   getProductById,
+  createProduct,
+  login,
 } = require("../controller/productControllers");
 
 //@desc GET all products from db
@@ -18,5 +20,8 @@ router.get("/", getProducts);
 //@access Public
 
 router.get("/:id", getProductById);
+
+router.post("/createProduct", createProduct);
+router.post("/login", login);
 
 module.exports = router;

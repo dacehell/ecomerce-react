@@ -11,6 +11,7 @@ import React from "react";
 import ProductScreen from "./containers/productscreen/ProductScreen";
 
 import CartScreen from "./containers/cart/CartScreen";
+import { LoginForm } from "./containers/login-form/LoginForm";
 function App() {
   return (
     <div>
@@ -24,6 +25,9 @@ function App() {
           <Route exact path="/product/:id" component={ProductScreen} />
 
           <Route exact path="/cart" component={CartScreen} />
+          <Route exact path="/login">
+            <LoginForm />
+          </Route>
           {/* <Route exact path="/">
               <UsersList />
             </Route>

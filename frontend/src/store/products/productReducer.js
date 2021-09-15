@@ -6,6 +6,9 @@ import {
   GET_PRODUCT_DETAILS_SUCCESS,
   GET_PRODUCT_DETAILS_FAIL,
   GET_PRODUCT_DETAILS_RESET,
+  CREATE_PRODUCT_START,
+  CREATE_PRODUCT_SUCCESS,
+  CREATE_PRODUCT_FAILURE,
 } from "./constants";
 
 export const getProductsReducer = (state = { products: [] }, action) => {
@@ -49,6 +52,23 @@ export const getProductDetailsReducer = (state = { product: {} }, action) => {
     case GET_PRODUCT_DETAILS_RESET:
       return {
         product: {},
+      };
+    case CREATE_PRODUCT_START:
+      return {
+        ...state,
+        isLoading: "loading",
+      };
+    case CREATE_PRODUCT_SUCCESS:
+      return {
+        ...state,
+        isLoading: "succeeded",
+        data: [...state.data, action.payload],
+      };
+    case CREATE_PRODUCT_FAILURE:
+      return {
+        ...state,
+        isLoading: "failed",
+        data: [],
       };
     default:
       return state;

@@ -6,6 +6,9 @@ import {
   GET_PRODUCT_DETAILS_SUCCESS,
   GET_PRODUCT_DETAILS_FAIL,
   GET_PRODUCT_DETAILS_RESET,
+  CREATE_PRODUCT_START,
+  CREATE_PRODUCT_SUCCESS,
+  CREATE_PRODUCT_FAILURE,
 } from "./constants";
 import axios from "axios";
 
@@ -14,7 +17,7 @@ export const getProducts = () => async (dispatch) => {
     dispatch({ type: GET_PRODUCTS_REQUEST });
 
     const { data } = await axios.get("/api/products");
-
+    // const { data } = await axios.post("/api/products/createProduct")
     dispatch({
       type: GET_PRODUCTS_SUCCESS,
       payload: data,
@@ -53,4 +56,25 @@ export const getProductDetails = (id) => async (dispatch) => {
 
 export const removeProductDetails = () => (dispatch) => {
   dispatch({ type: GET_PRODUCT_DETAILS_RESET });
+};
+
+export const createProduct = () => async (dispatch) => {
+  try {
+    dispatch({ type: CREATE_PRODUCT_START });
+
+    //const { data } = await axios.get("/api/products");
+    const { data } = await axios.post("/api/products/createProduct");
+    dispatch({
+      type: CREATE_PRODUCT_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: CREATE_PRODUCT_FAILURE,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
 };

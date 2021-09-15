@@ -47,6 +47,16 @@ const Menu = () => {
                 Create
               </NavLink>
             </li>
+            <li className="nav-item ">
+              <NavLink
+                exact
+                activeClassName="my-active"
+                className="navbar-brand"
+                to="/login"
+              >
+                Login
+              </NavLink>
+            </li>
           </ul>
           <ul className="navbar-nav navbar__links ms-auto">
             <li>
