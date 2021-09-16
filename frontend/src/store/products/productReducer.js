@@ -11,47 +11,28 @@ import {
   CREATE_PRODUCT_FAILURE,
 } from "./constants";
 
-export const getProductsReducer = (state = { products: [] }, action) => {
+export const getProductsReducer = (
+  state = { data: [], isLoading: "initial" },
+  action
+) => {
   switch (action.type) {
     case GET_PRODUCTS_REQUEST:
       return {
-        loading: true,
-        products: [],
+        ...state,
+        isLoading: "loading",
+        data: [],
       };
     case GET_PRODUCTS_SUCCESS:
       return {
-        products: action.payload,
-        loading: false,
+        ...state,
+        data: action.payload,
+        isLoading: "iddle",
       };
     case GET_PRODUCTS_FAIL:
       return {
-        loading: false,
+        ...state,
+        isLoading: "iddle",
         error: action.payload,
-      };
-    default:
-      return state;
-  }
-};
-
-export const getProductDetailsReducer = (state = { product: {} }, action) => {
-  switch (action.type) {
-    case GET_PRODUCT_DETAILS_REQUEST:
-      return {
-        loading: true,
-      };
-    case GET_PRODUCT_DETAILS_SUCCESS:
-      return {
-        loading: false,
-        product: action.payload,
-      };
-    case GET_PRODUCT_DETAILS_FAIL:
-      return {
-        loading: false,
-        error: action.payload,
-      };
-    case GET_PRODUCT_DETAILS_RESET:
-      return {
-        product: {},
       };
     case CREATE_PRODUCT_START:
       return {
@@ -68,8 +49,37 @@ export const getProductDetailsReducer = (state = { product: {} }, action) => {
       return {
         ...state,
         isLoading: "failed",
-        data: [],
       };
+    default:
+      return state;
+  }
+};
+
+export const getProductDetailsReducer = (state = { product: {} }, action) => {
+  switch (action.type) {
+    case GET_PRODUCT_DETAILS_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+    case GET_PRODUCT_DETAILS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        product: action.payload,
+      };
+    case GET_PRODUCT_DETAILS_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+    case GET_PRODUCT_DETAILS_RESET:
+      return {
+        ...state,
+        product: {},
+      };
+
     default:
       return state;
   }

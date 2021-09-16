@@ -58,17 +58,22 @@ export const removeProductDetails = () => (dispatch) => {
   dispatch({ type: GET_PRODUCT_DETAILS_RESET });
 };
 
-export const createProduct = () => async (dispatch) => {
+export const createProduct = (product) => async (dispatch) => {
   try {
     dispatch({ type: CREATE_PRODUCT_START });
 
     //const { data } = await axios.get("/api/products");
     const { data } = await axios.post("/api/products/createProduct");
-    dispatch({
-      type: CREATE_PRODUCT_SUCCESS,
-      payload: data,
-    });
+    debugger;
+    if (data) {
+      dispatch({
+        type: CREATE_PRODUCT_SUCCESS,
+        payload: data,
+      });
+    }
   } catch (error) {
+    console.log(error);
+
     dispatch({
       type: CREATE_PRODUCT_FAILURE,
       payload:

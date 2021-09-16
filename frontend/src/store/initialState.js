@@ -1,7 +1,7 @@
 export const initialStateProduct = {
-  isLoading: "iddle",
+  isLoading: "initial",
   data: [],
-  errorMessage: null,
+  error: null,
   message: null,
 };
 const cartItemsInLocalStorage = localStorage.getItem("cart")

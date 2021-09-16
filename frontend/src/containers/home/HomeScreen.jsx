@@ -12,18 +12,22 @@ const HomeScreen = () => {
   const dispatch = useDispatch();
 
   const getProducts = useSelector((state) => state.getProducts);
-  const { products, loading, error } = getProducts;
+
+  const { data: products, isLoading, error } = getProducts;
+  //const isLoading = useSelector((state) => state.getProducts.isLoading);
 
   useEffect(() => {
-    dispatch(listProducts());
-  }, [dispatch]);
+    if (isLoading === "initial") {
+      dispatch(listProducts());
+    }
+  }, [dispatch, isLoading]);
 
   return (
     <div>
       <h2 className="homescreen__title">Latest Products</h2>
       <div>
         <div className="row">
-          {loading ? (
+          {isLoading === "loading" ? (
             <h2>Loading...</h2>
           ) : error ? (
             <h2>{error}</h2>

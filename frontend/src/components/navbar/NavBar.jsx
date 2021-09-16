@@ -42,7 +42,7 @@ const Menu = () => {
                 exact
                 activeClassName="my-active"
                 className="navbar-brand"
-                to="/user/create"
+                to="/createProduct"
               >
                 Create
               </NavLink>

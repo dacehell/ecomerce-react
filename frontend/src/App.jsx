@@ -12,6 +12,7 @@ import ProductScreen from "./containers/productscreen/ProductScreen";
 
 import CartScreen from "./containers/cart/CartScreen";
 import { LoginForm } from "./containers/login-form/LoginForm";
+import ProductCreate from "./containers/product-create/ProductCreate";
 function App() {
   return (
     <div>
@@ -28,8 +29,11 @@ function App() {
           <Route exact path="/login">
             <LoginForm />
           </Route>
+          <Route exact path="/createProduct">
+            <ProductCreate />
+          </Route>
           {/* <Route exact path="/">
-              <UsersList />
+              <UsersList /> 
             </Route>
             <Route path="/users/delete/:id">
               <UserDelete />
